@@ -45,7 +45,18 @@ class ListEntryDao():
         for list_entry in list_of_list_entries:
             self.delete(list_entry)
 
-# This part is just for testing, it'll be removed.
-testObj = ListEntryModule.ListEntry(1,"Do science stuff.",False,id=1)
-testDao = ListEntryDao("/home/konstantinlevin/Development/tdi/databases/tdi_database.db")
-testDao.delete(testObj)
+    def getById(self,id):
+
+       QUERY = "SELECT * FROM list_entries WHERE id = :id"
+       return executeQuery(self.db_path,QUERY,{"id":id},True)[0]
+
+    def getByName(self,name):
+
+        QUERY = "SELECT * FROM list_entries WHERE name = :name"
+        return executeQuery(self.db_path,QUERY,{"name":name},True)[0]
+
+    def getAll(self):
+        
+        QUERY = "SELECT * FROM list_entries"
+        return executeQuery(self.db_path,QUERY,{},True)
+
