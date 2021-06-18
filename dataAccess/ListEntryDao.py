@@ -24,8 +24,8 @@ class ListEntryDao():
 
     
     def update(self,list_entry:ListEntryModule.ListEntry):
-        QUERY = "UPDATE list_entries SET list_id = ?, entry_text = ?, done = ?"
-        params = (list_entry.list_id,list_entry.entry_text,list_entry.done)
+        QUERY = "UPDATE list_entries SET list_id = ?, entry_text = ?, done = ? WHERE id = ?"
+        params = (list_entry.list_id,list_entry.entry_text,list_entry.done,list_entry.id)
         executeQuery(self.db_path,QUERY,params=params)
     
 
@@ -34,6 +34,6 @@ class ListEntryDao():
             self.update(list_entry)
 
 # This part is just for testing, it'll be removed.
-testObj = ListEntryModule.ListEntry(1,"Do science stuff.",False)
+testObj = ListEntryModule.ListEntry(1,"Do science stuff.",False,id=1)
 testDao = ListEntryDao("/home/konstantinlevin/Development/tdi/databases/tdi_database.db")
 testDao.update(testObj)
