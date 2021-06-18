@@ -1,7 +1,7 @@
 class TodoList():
 
-    def __init__(self,name,password):
-        self.id = None
+    def __init__(self,name,password,id=None):
+        self.id = id
         self.name = name
         self.password = password
 
