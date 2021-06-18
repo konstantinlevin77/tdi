@@ -33,7 +33,19 @@ class ListEntryDao():
         for list_entry in list_of_list_entries:
             self.update(list_entry)
 
+    def delete(self,list_entry:ListEntryModule.ListEntry):
+        QUERY = "DELETE FROM list_entries WHERE id = :id"
+        params = {
+            "id":list_entry.id
+        }
+        executeQuery(self.db_path,QUERY,params=params)
+    
+
+    def deleteAll(self,list_of_list_entries):
+        for list_entry in list_of_list_entries:
+            self.delete(list_entry)
+
 # This part is just for testing, it'll be removed.
 testObj = ListEntryModule.ListEntry(1,"Do science stuff.",False,id=1)
 testDao = ListEntryDao("/home/konstantinlevin/Development/tdi/databases/tdi_database.db")
-testDao.update(testObj)
+testDao.delete(testObj)
