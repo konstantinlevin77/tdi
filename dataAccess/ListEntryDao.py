@@ -21,4 +21,19 @@ class ListEntryDao():
     def addAll(self,list_of_list_entries):
         for list_entry in list_of_list_entries:
             self.add(list_entry)
+
     
+    def update(self,list_entry:ListEntryModule.ListEntry):
+        QUERY = "UPDATE list_entries SET list_id = ?, entry_text = ?, done = ?"
+        params = (list_entry.list_id,list_entry.entry_text,list_entry.done)
+        executeQuery(self.db_path,QUERY,params=params)
+    
+
+    def updateAll(self,list_of_list_entries):
+        for list_entry in list_of_list_entries:
+            self.update(list_entry)
+
+# This part is just for testing, it'll be removed.
+testObj = ListEntryModule.ListEntry(1,"Do science stuff.",False)
+testDao = ListEntryDao("/home/konstantinlevin/Development/tdi/databases/tdi_database.db")
+testDao.update(testObj)
