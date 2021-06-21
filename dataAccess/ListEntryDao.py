@@ -1,6 +1,9 @@
 import importlib.util as iutil
-
 import sqlite3
+
+list_entry_module_spec = iutil.spec_from_file_location("ListEntry","/home/konstantinlevin/Development/tdi/entities/ListEntry.py")
+ListEntryModule = iutil.module_from_spec(list_entry_module_spec)
+list_entry_module_spec.loader.exec_module(ListEntryModule)
 
 def executeQuery(db_path,query,params=None,select=False):
 
@@ -15,9 +18,6 @@ def executeQuery(db_path,query,params=None,select=False):
         else:
             connection.commit()
             connection.close()
-list_entry_module_spec = iutil.spec_from_file_location("ListEntry","/home/konstantinlevin/Development/tdi/entities/ListEntry.py")
-ListEntryModule = iutil.module_from_spec(list_entry_module_spec)
-list_entry_module_spec.loader.exec_module(ListEntryModule)
 
 class ListEntryDao():
     

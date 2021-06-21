@@ -1,7 +1,10 @@
 import sqlite3
 import importlib.util as iutil
 
-import sqlite3
+# Annoying, I know 
+todolist_spec = iutil.spec_from_file_location("TodoList","/home/konstantinlevin/Development/tdi/entities/TodoList.py")
+TodoListModule = iutil.module_from_spec(todolist_spec)
+todolist_spec.loader.exec_module(TodoListModule)
 
 def executeQuery(db_path,query,params=None,select=False):
 
@@ -17,10 +20,6 @@ def executeQuery(db_path,query,params=None,select=False):
             connection.commit()
             connection.close()
 
-# Annoying, I know 
-todolist_spec = iutil.spec_from_file_location("TodoList","/home/konstantinlevin/Development/tdi/entities/TodoList.py")
-TodoListModule = iutil.module_from_spec(todolist_spec)
-todolist_spec.loader.exec_module(TodoListModule)
 
 
 class ListDao():
