@@ -58,10 +58,24 @@ class ListEntryDao():
         for list_entry in list_of_list_entries:
             self.delete(list_entry)
 
+
+    def deleteByListId(self,list_id):
+        QUERY  = "DELETE FROM list_entries WHERE list_id = :list_id"
+        params = {
+            "list_id":list_id
+        }
+        executeQuery(self.db_path,QUERY,params)
+
     def getById(self,id):
 
        QUERY = "SELECT * FROM list_entries WHERE id = :id"
        return executeQuery(self.db_path,QUERY,{"id":id},True)[0]
+
+    
+    def getByListId(self,list_id):
+        QUERY = "SELECT * FROM list_entries WHERE list_id = :list_id"
+        return executeQuery(self.db_path,QUERY,{"list_id":list_id},True) 
+
 
     def getByName(self,name):
 
