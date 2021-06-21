@@ -1,7 +1,20 @@
 import importlib.util as iutil
 
-from executeQuery import executeQuery
+import sqlite3
 
+def executeQuery(db_path,query,params=None,select=False):
+
+        connection = sqlite3.connect(db_path)
+        cursor = connection.cursor()
+        cursor.execute(query,params)
+        if select:
+            res = cursor.fetchall()
+            connection.close()
+            return res
+
+        else:
+            connection.commit()
+            connection.close()
 list_entry_module_spec = iutil.spec_from_file_location("ListEntry","/home/konstantinlevin/Development/tdi/entities/ListEntry.py")
 ListEntryModule = iutil.module_from_spec(list_entry_module_spec)
 list_entry_module_spec.loader.exec_module(ListEntryModule)
