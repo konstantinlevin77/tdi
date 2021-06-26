@@ -61,15 +61,36 @@ class ListDao():
     def getById(self,id):
 
        QUERY = "SELECT * FROM lists WHERE id = :id"
-       return executeQuery(self.db_path,QUERY,{"id":id},True)[0]
+       result =  executeQuery(self.db_path,QUERY,{"id":id},True)
+
+       if len(result) > 0:
+           result = result[0]
+       else:
+           # id, name, password
+           result = [None,None,None]
+
+       return TodoListModule.TodoList(result[1],result[2],id=result[0])
 
     def getByName(self,name):
 
         QUERY = "SELECT * FROM lists WHERE name = :name"
-        return executeQuery(self.db_path,QUERY,{"name":name},True)[0]
+        result =  executeQuery(self.db_path,QUERY,{"name":name},True)
+
+        if len(result) > 0:
+            result = result[0]
+        else:
+            result = [None,None,None]
+
+        return TodoListModule.TodoList(result[1],result[2],id=result[0])
 
     def getAll(self):
         
         QUERY = "SELECT * FROM lists"
-        return executeQuery(self.db_path,QUERY,{},True)
+        result =  executeQuery(self.db_path,QUERY,{},True)
+        result_in_entity_format = []
+
+        for result_sample in result:
+            result_in_entity_format.append(TodoListModule.TodoList(result_sample[1],result_sample[2],id=result_sample[0]))
+        
+        return result_in_entity_format
 
