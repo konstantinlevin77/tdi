@@ -29,7 +29,7 @@ def clean_list():
     name_of_to_clear = " ".join(sys.argv[0 + TESTING_ARG + CLEAN_ARG + ARGUMENT_TO_CLEAR:len(sys.argv)])
 
     # entry[0] is id.
-    all_list_names = [entry[1] for entry in list_dao.getAll()]
+    all_list_names = [entry.name for entry in list_dao.getAll()]
     if name_of_to_clear in all_list_names:
         
         id_of_to_clear = list_dao.getByName(name_of_to_clear).id
