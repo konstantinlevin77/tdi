@@ -25,7 +25,36 @@ COMMAND_ARG = 1
 
 
 def delete_list():
-    pass
+
+    list_dao = ListDaoModule.ListDao("/home/konstantinlevin/Development/tdi/databases/tdi_database.db")
+    list_entry_dao = ListEntryDaoModule.ListEntryDao("/home/konstantinlevin/Development/tdi/databases/tdi_database.db")
+    
+    # Next system argument will be the name of the thing user would like to delete.
+    ARGUMENT_TO_DELETE = 1
+
+    name_of_to_delete = " ".join(sys.argv[0 + TESTING_ARG + COMMAND_ARG + ARGUMENT_TO_DELETE:len(sys.argv)])
+    entity_of_to_delete = list_dao.getByName(name_of_to_delete)
+
+    if entity_of_to_delete.id is None:
+        print(Fore.LIGHTBLUE_EX + f"You don't have a list called {name_of_to_delete}, you can create it by typing")
+        print(Fore.RESET)
+        print(Fore.YELLOW + f"\ttdi create list {name_of_to_delete}")
+        print(Fore.RESET)
+
+    else:
+        list_dao.delete(entity_of_to_delete)
+        list_entry_dao.deleteByListId(entity_of_to_delete.id)
+        print(Fore.LIGHTGREEN_EX + f"Okay, your list '{name_of_to_delete}' has been deleted fully.")
+        print(Fore.RESET)
+        
+
+
+
+
+
+
+
+
 
 delete_arguments = {
     "list": delete_list

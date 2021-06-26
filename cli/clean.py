@@ -37,7 +37,6 @@ def clean_list():
         print(Fore.LIGHTGREEN_EX + "Alright, all entries of your list have been cleaned!")
 
 
-
     else:
         print(Fore.LIGHTMAGENTA_EX + "There is no list with this name, would you like to create it by typing")
         print(Fore.LIGHTBLUE_EX + "\ttdi create list {}".format(name_of_to_clear))
