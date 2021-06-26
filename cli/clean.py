@@ -32,7 +32,7 @@ def clean_list():
     all_list_names = [entry[1] for entry in list_dao.getAll()]
     if name_of_to_clear in all_list_names:
         
-        id_of_to_clear = list_dao.getByName(name_of_to_clear)[0]
+        id_of_to_clear = list_dao.getByName(name_of_to_clear).id
         list_entry_dao.deleteByListId(id_of_to_clear)
         print(Fore.LIGHTGREEN_EX + "Alright, all entries of your list have been cleaned!")
 

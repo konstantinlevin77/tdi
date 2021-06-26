@@ -32,10 +32,7 @@ def createList():
     list_name = ""
     while not name_determined:
         
-
-        # In database first index (0) is id, second (1) is name.
-        INDEX_OF_LIST_NAME = 1
-        existingListNames = [entry[INDEX_OF_LIST_NAME] for entry in dao.getAll()]
+        existingListNames = [entry.name for entry in dao.getAll()]
 
         list_name = input(Fore.RED + "Your list's name:" + Fore.WHITE).strip()
         print(Fore.RESET)
