@@ -2,8 +2,7 @@ import importlib.util as iutil
 from os import EX_OSFILE
 import sqlite3
 
-list_entry_module_spec = iutil.spec_from_file_location(
-    "ListEntry", "/home/konstantinlevin/Development/tdi/entities/ListEntry.py")
+list_entry_module_spec = iutil.spec_from_file_location("ListEntry", "/home/konstantinlevin/Development/tdi/entities/ListEntry.py")
 ListEntryModule = iutil.module_from_spec(list_entry_module_spec)
 list_entry_module_spec.loader.exec_module(ListEntryModule)
 
@@ -112,4 +111,3 @@ class ListEntryDao():
             result_in_entity_format.append(ListEntryModule.ListEntry(result_sample[1],result_sample[2],result_sample[3],id=result_sample[0]))
 
         return result_in_entity_format
-
