@@ -19,12 +19,47 @@ TESTING_ARG = 1
 # so if we want to get the first set argument we should sys.argv[0 + TESTING_ARG + SET_ARG]
 SET_ARG = 1
 
+dao = TodoListDaoModule.ListDao("/home/konstantinlevin/Development/tdi/databases/tdi_database.db")
+
 def set_list_name():
     pass
 
 
 def set_list_password():
-    pass
+    print(Fore.LIGHTMAGENTA_EX + "Okayy, let's set some password stuff, first of all can you give me the name of the list you want to set the password")
+    list_name = input(Fore.RED + "List's Name:"+ Fore.WHITE).strip()
+
+    all_lists_names = [s.name for s in dao.getAll()]
+
+    if list_name in all_lists_names:
+        lists_password = dao.getByName(list_name).password
+
+
+        if lists_password != "":
+            print(Fore.CYAN + "This list has a password, so you should type the old password before setting a new one")
+            while True:
+                lists_password_given_by_user = input(Fore.LIGHTRED_EX + "List's Password:"+Fore.RESET).strip()
+                if lists_password_given_by_user == lists_password:
+                    break
+        
+        print(Fore.CYAN + "Now please give the new password")
+        new_password = input(Fore.LIGHTRED_EX + "New Password:" + Fore.RESET)
+
+        entity_version_of_set_list = dao.getByName(list_name)
+        entity_version_of_set_list.password = new_password
+        dao.update(entity_version_of_set_list)
+
+        print(Fore.LIGHTGREEN_EX + "Your list's password has been setted :)")
+        print(Fore.RESET)
+
+            
+
+
+
+    else:
+        print(Fore.CYAN + f"You don't have a list called '{list_name}', however you can create it by typing")
+        print(Fore.LIGHTGREEN_EX + "\ttdi create list")
+
 
 
 set_list_arguments = {
