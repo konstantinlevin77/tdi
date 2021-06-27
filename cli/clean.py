@@ -1,4 +1,3 @@
-from os import name
 import sys
 from colorama import Fore
 import importlib.util as iutil
