@@ -3,12 +3,12 @@ from colorama import Fore
 import importlib.util as iutil
 
 """Import of TodoList entity."""
-todo_list_spec = iutil.spec_from_file_location("/home/konstantinlevin/Development/tdi/entities/TodoList.py")
+todo_list_spec = iutil.spec_from_file_location("TodoList","/home/konstantinlevin/Development/tdi/entities/TodoList.py")
 TodoListModule = iutil.module_from_spec(todo_list_spec)
 todo_list_spec.loader.exec_module(TodoListModule)
 
 """Import of TodoList Data Access Object"""
-todo_list_dao_spec = iutil.spec_from_file_location("")
+todo_list_dao_spec = iutil.spec_from_file_location("ListDao","/home/konstantinlevin/Development/tdi/dataAccess/ListDao.py")
 TodoListDaoModule = iutil.module_from_spec(todo_list_dao_spec)
 todo_list_dao_spec.loader.exec_module(TodoListDaoModule)
 
@@ -34,7 +34,19 @@ set_list_arguments = {
 
 
 def set_list():
-    pass
+    # So the fourth argument will be what user want to set 
+    INDEX_OF_ARGUMENT_TO_SET = 1
+
+    current_argument_to_set = sys.argv[0 + TESTING_ARG + SET_ARG + INDEX_OF_ARGUMENT_TO_SET]
+    current_argument_command = set_list_arguments.get(current_argument_to_set)
+
+    if current_argument_command is None:
+        print(Fore.CYAN + "Sorry but for now you can set the '{}' property of a list, but you can still set name or password.")
+        print(Fore.RESET)
+
+    else:
+        current_argument_command()
+
 
 
 set_arguments = {
@@ -42,4 +54,12 @@ set_arguments = {
 }
 
 def set_():
-    pass
+    current_argument = sys.argv[0 + TESTING_ARG + SET_ARG]
+    current_set_command = set_arguments.get(current_argument)
+
+    if current_set_command is None:
+        print(Fore.CYAN + f"Sorry but for now you can't set properties of a {current_argument}, but you can still set the properties of a list.")
+        print(Fore.RESET)
+
+    else:
+        current_set_command()

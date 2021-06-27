@@ -46,6 +46,14 @@ def clean_list():
 clean_arguments = {"list":clean_list}
 
 def clean():
+
+    if len(sys.argv) == 0 + TESTING_ARG + CLEAN_ARG:
+        
+        print(Fore.CYAN + f"Sorry,but you did not specified what you wanted to clean, did you mean")
+        print(Fore.RESET)
+        print(Fore.YELLOW+"\ttdi clean list")
+        return
+
     current_argument = sys.argv[0 + TESTING_ARG + CLEAN_ARG]
     current_command = clean_arguments.get(current_argument)
 
