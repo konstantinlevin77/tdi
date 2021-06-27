@@ -41,7 +41,7 @@ def set_list():
     current_argument_command = set_list_arguments.get(current_argument_to_set)
 
     if current_argument_command is None:
-        print(Fore.CYAN + "Sorry but for now you can set the '{}' property of a list, but you can still set name or password.")
+        print(Fore.CYAN + f"Sorry but for now you can set the '{current_argument_to_set}' property of a list, but you can still set name or password.")
         print(Fore.RESET)
 
     else:
@@ -54,6 +54,14 @@ set_arguments = {
 }
 
 def set_():
+
+    if len(sys.argv) == 0 + TESTING_ARG + SET_ARG:
+
+        print(Fore.CYAN + "Sorry but you did not specified what you wanted to set, did you mean")
+        print(Fore.RESET)
+        print(Fore.LIGHTRED_EX + "\ttdli set list" + Fore.RESET)
+        return
+
     current_argument = sys.argv[0 + TESTING_ARG + SET_ARG]
     current_set_command = set_arguments.get(current_argument)
 
