@@ -21,4 +21,6 @@ def load_list(list_entity):
     entry_map = {str(i+1):entry for i,entry in enumerate(entries)}
 
     for num, entry in entry_map.items():
-        print(num+"-",entry.entry_text+f"   [{'Done' if entry.done else 'Undone'}]")
+        print(Fore.MAGENTA + num+"-" + Fore.RESET,entry.entry_text+ Fore.CYAN + f"   [{'Done' if entry.done else 'Undone'}]" + Fore.RESET)
+    
+    return entry_map

@@ -48,7 +48,7 @@ def open_list():
         print(Fore.RESET)
 
     else:
-        load_list(entity_of_list_to_open)
+        entity_map = load_list(entity_of_list_to_open)
         run_open_interpreter()
 
 
