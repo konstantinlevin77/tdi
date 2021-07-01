@@ -82,11 +82,13 @@ class ListEntryDao():
         QUERY = "SELECT * FROM list_entries WHERE list_id = :list_id"
         result =  executeQuery(self.db_path,QUERY,{"list_id":list_id},True)
         if len(result)>0:
-            result = result[0]
+            result_entity = []
+            for r in result:
+                result_entity.append(ListEntryModule.ListEntry(r[1],r[2],r[3],id=r[0]))
+            return result_entity
         else:
             result = [None,None,None,None]
-        
-        return ListEntryModule.ListEntry(result[1],result[2],result[3],id=result[0])
+            return ListEntryModule.ListEntry(result[1],result[2],result[3],id=result[0])
 
 
     def getByName(self,name):

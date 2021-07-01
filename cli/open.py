@@ -16,14 +16,14 @@ list_dao_spec = iutil.spec_from_file_location("ListDao","/home/konstantinlevin/D
 ListDaoModule = iutil.module_from_spec(list_dao_spec)
 list_dao_spec.loader.exec_module(ListDaoModule)
 
-# Import of List Entry Dao
-list_entry_dao_spec = iutil.spec_from_file_location("ListEntryDao","/home/konstantinlevin/Development/tdi/dataAccess/ListEntryDao.py")
-ListEntryDaoModule = iutil.module_from_spec(list_entry_dao_spec)
-list_entry_dao_spec.loader.exec_module(ListEntryDaoModule)
+
 
 
 # I run mainHandler.py script as python mainHandler.py, so the first system argument
-# is script itself.
+# is script itself.# Import of List Entry Dao
+list_entry_dao_spec = iutil.spec_from_file_location("ListEntryDao","/home/konstantinlevin/Development/tdi/dataAccess/ListEntryDao.py")
+ListEntryDaoModule = iutil.module_from_spec(list_entry_dao_spec)
+list_entry_dao_spec.loader.exec_module(ListEntryDaoModule)
 TESTING_ARG = 1
 
 # Second argument is "open" command itself so in order to get the first open argument we 
@@ -48,7 +48,7 @@ def open_list():
         print(Fore.RESET)
 
     else:
-        load_list()
+        load_list(entity_of_list_to_open)
         run_open_interpreter()
 
 
