@@ -16,9 +16,6 @@ list_dao_spec = iutil.spec_from_file_location("ListDao","/home/konstantinlevin/D
 ListDaoModule = iutil.module_from_spec(list_dao_spec)
 list_dao_spec.loader.exec_module(ListDaoModule)
 
-
-
-
 # I run mainHandler.py script as python mainHandler.py, so the first system argument
 # is script itself.# Import of List Entry Dao
 list_entry_dao_spec = iutil.spec_from_file_location("ListEntryDao","/home/konstantinlevin/Development/tdi/dataAccess/ListEntryDao.py")
@@ -38,6 +35,12 @@ def open_list():
     # Third argument is "list" itself so in order to get which list
     # user wants to open we should start from index [0 + TESTING_ARG + OPEN_ARG + LIST_ARG]
     LIST_ARG = 1
+
+    if len(sys.argv) == 0 + TESTING_ARG + OPEN_ARG + LIST_ARG:
+        print(Fore.GREEN + "Sorry, you did not give the name of the list you want to open.")
+        print(Fore.RESET)
+        return
+
     name_of_list_to_open = " ".join(sys.argv[0 + TESTING_ARG + OPEN_ARG + LIST_ARG:len(sys.argv)])
     
     entity_of_list_to_open = list_dao.getByName(name_of_list_to_open)
