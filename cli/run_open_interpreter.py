@@ -32,7 +32,21 @@ def done_command(args,entry_map,list_entity):
     return entry_map
 
 def undone_command(args,entry_map,list_entity):
-    pass
+    arg_to_get_undone = args[0]
+
+    if arg_to_get_undone in entry_map.keys():
+
+        entry_to_undone = entry_map[arg_to_get_undone]
+        entry_to_undone.done = 0
+        dao.update(entry_to_undone)
+        entry_map = load_list(list_entity)
+        print(Fore.CYAN + "Entry marked as undone!" + Fore.RESET)
+
+    else:
+        print(Fore.RED+"There is no entry with id {}".format(arg_to_get_undone))
+
+
+    return entry_map
 
 def add_command(args,entry_map,list_entity):
     pass
