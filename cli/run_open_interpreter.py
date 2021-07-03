@@ -14,6 +14,20 @@ list_entry_dao_spec.loader.exec_module(ListEntryDaoModule)
 
 dao = ListEntryDaoModule.ListEntryDao("/home/konstantinlevin/Development/tdi/databases/tdi_database.db")
 
+"""
+Briefly how all this shit work:
+
+There is an important function called load_list()
+This function reads all the entries of the list given, prompts them
+and returns a dictionary called entry_map
+
+entry_map contains entries with their ids as keys.
+when interpreter executes a command it also calls the load_list() function again.
+so all the stuff is based on changing entry_map
+
+"""
+
+
 def done_command(args,entry_map,list_entity):
     arg_to_get_done = args[0]
 
@@ -49,7 +63,16 @@ def undone_command(args,entry_map,list_entity):
     return entry_map
 
 def add_command(args,entry_map,list_entity):
-    pass
+    print(args)
+    list_id = list_entity.id 
+    entry_text = " ".join(args)
+
+    entry_entity = ListEntryModule.ListEntry(list_id,entry_text,0)
+    dao.add(entry_entity)
+    entry_map = load_list(list_entity)
+    print(Fore.CYAN + "Entry has been added" + Fore.RESET)
+
+    return entry_map
 
 def remove_command(args,entry_map,list_entity):
     pass
