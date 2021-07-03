@@ -52,7 +52,7 @@ def open_list():
 
     else:
         entity_map = load_list(entity_of_list_to_open)
-        run_open_interpreter()
+        run_open_interpreter(entity_of_list_to_open,entity_map)
 
 
 open_arguments = {
