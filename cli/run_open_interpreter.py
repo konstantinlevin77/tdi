@@ -15,7 +15,7 @@ list_entry_dao_spec.loader.exec_module(ListEntryDaoModule)
 dao = ListEntryDaoModule.ListEntryDao("/home/konstantinlevin/Development/tdi/databases/tdi_database.db")
 
 """
-Briefly how all this shit work:
+Briefly how all this shit works:
 
 There is an important function called load_list()
 This function reads all the entries of the list given, prompts them
@@ -89,7 +89,9 @@ def remove_command(args,entry_map,list_entity):
 
 
 def exit_command(args):
-    pass
+    print(Fore.LIGHTCYAN_EX + "Program has finished.")
+    print(Fore.RESET)
+
 
 interpreter_commands = {
     "done":done_command,
@@ -110,6 +112,10 @@ def run_open_interpreter(list_entity,entry_map):
         if command_as_function is None:
             print(Fore.RESET)
             print(Fore.RED+f"There is no command called {command}")
+        
+        elif command == "exit":
+            command_as_function(args)
+            break
 
         else:
             entry_map = command_as_function(args,entry_map,list_entity)
