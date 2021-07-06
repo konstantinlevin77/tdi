@@ -88,7 +88,7 @@ class ListEntryDao():
             return result_entity
         else:
             result = [None,None,None,None]
-            return ListEntryModule.ListEntry(result[1],result[2],result[3],id=result[0])
+            return [ListEntryModule.ListEntry(result[1],result[2],result[3],id=result[0])]
 
 
     def getByName(self,name):
