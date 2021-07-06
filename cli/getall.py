@@ -2,6 +2,8 @@ import sys
 from colorama import Fore
 import importlib.util as iutil
 
+from is_test import is_test
+
 list_dao_spec = iutil.spec_from_file_location(
     "ListDao", "/home/konstantinlevin/Development/tdi/dataAccess/ListDao.py")
 ListDaoModule = iutil.module_from_spec(list_dao_spec)
@@ -12,7 +14,7 @@ ListEntryDaoModule = iutil.module_from_spec(list_entry_dao_spec)
 list_entry_dao_spec.loader.exec_module(ListEntryDaoModule)
 
 # I run this script "python mainHandler.py x x" so the first argument is script itself.
-TESTING_ARG = 1
+TESTING_ARG = is_test()
 
 # The second argument is "getall" command itself, so in order to get first argument
 # sys.argv[0 + TESTING_ARG + GETALL_ARG]

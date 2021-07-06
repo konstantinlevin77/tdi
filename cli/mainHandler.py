@@ -10,7 +10,7 @@ from open import open
 from set import set_
 from getall import getall
 
-
+from is_test import is_test
 
 commands = {
     "clean":clean,
@@ -22,7 +22,7 @@ commands = {
     }
 
 # First argument is the script itself for now so I'm adding 1 to find first argument, but it'll change.
-TESTING_ARG = 1 
+TESTING_ARG = is_test()
 
 
 def main():

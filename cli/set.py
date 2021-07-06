@@ -2,6 +2,8 @@ import sys
 from colorama import Fore
 import importlib.util as iutil
 
+from is_test import is_test
+
 """Import of TodoList entity."""
 todo_list_spec = iutil.spec_from_file_location(
     "TodoList", "/home/konstantinlevin/Development/tdi/entities/TodoList.py")
@@ -15,7 +17,7 @@ TodoListDaoModule = iutil.module_from_spec(todo_list_dao_spec)
 todo_list_dao_spec.loader.exec_module(TodoListDaoModule)
 
 # I run this script "python3 mainHandler.py" so for test time first argument is script itself.
-TESTING_ARG = 1
+TESTING_ARG = is_test()
 
 # Second argument is python3 mainHandler.py "set"
 # so if we want to get the first set argument we should sys.argv[0 + TESTING_ARG + SET_ARG]

@@ -6,6 +6,8 @@ import os
 from load_list import load_list
 from run_open_interpreter import run_open_interpreter
 
+from is_test import is_test
+
 # Import of List Entry
 list_entry_spec = iutil.spec_from_file_location("ListEntry","/home/konstantinlevin/Development/tdi/entities/ListEntry.py")
 ListEntryModule = iutil.module_from_spec(list_entry_spec)
@@ -21,7 +23,7 @@ list_dao_spec.loader.exec_module(ListDaoModule)
 list_entry_dao_spec = iutil.spec_from_file_location("ListEntryDao","/home/konstantinlevin/Development/tdi/dataAccess/ListEntryDao.py")
 ListEntryDaoModule = iutil.module_from_spec(list_entry_dao_spec)
 list_entry_dao_spec.loader.exec_module(ListEntryDaoModule)
-TESTING_ARG = 1
+TESTING_ARG = is_test()
 
 # Second argument is "open" command itself so in order to get the first open argument we 
 # should sys.argv[0 + TESTING_ARG + OPEN_ARG]

@@ -2,6 +2,8 @@ import sys
 from colorama import Fore
 import importlib.util as iutil
 
+from is_test import is_test
+
 """Import of TodoList entity."""
 todolist_spec = iutil.spec_from_file_location("TodoList","/home/konstantinlevin/Development/tdi/entities/TodoList.py")
 TodoListModule = iutil.module_from_spec(todolist_spec)
@@ -18,7 +20,7 @@ ListEntryDaoModule = iutil.module_from_spec(list_entry_dao_spec)
 list_entry_dao_spec.loader.exec_module(ListEntryDaoModule)
 
 # For now I'm running script as python3 mainHandler.py so the first argument is script itself.
-TESTING_ARG = 1
+TESTING_ARG = is_test()
 
 # Second argument is python3 mainHandler.py "create" so the second argument is command itself.
 COMMAND_ARG = 1

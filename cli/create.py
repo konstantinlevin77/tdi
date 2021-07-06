@@ -2,6 +2,8 @@ import sys
 from colorama import Fore
 import importlib.util as iutil
 
+from is_test import is_test
+
 # Annoying import of TodoList class.
 todolist_spec = iutil.spec_from_file_location("TodoList","/home/konstantinlevin/Development/tdi/entities/TodoList.py")
 TodoListModule = iutil.module_from_spec(todolist_spec)
@@ -15,7 +17,7 @@ list_dao_spec.loader.exec_module(ListDaoModule)
 
 
 # First argument is the script itself for now so I'm adding 1 to find first argument, but it'll change.
-TESTING_ARG = 1
+TESTING_ARG = is_test()
 
 # Second argument is 'create' itself so first create argument will be 
 # sys.argv[0 + TESTING_ARG + COMMAND_ARG]
