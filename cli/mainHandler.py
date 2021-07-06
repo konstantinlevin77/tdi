@@ -8,6 +8,7 @@ from create import create
 from delete import delete
 from open import open
 from set import set_
+from getall import getall
 
 
 
@@ -16,7 +17,8 @@ commands = {
     "create":create,
     "delete":delete,
     "open":open,
-    "set":set_
+    "set":set_,
+    "getall":getall
     }
 
 # First argument is the script itself for now so I'm adding 1 to find first argument, but it'll change.
