@@ -63,7 +63,7 @@ def undone_command(args,entry_map,list_entity):
     return entry_map
 
 def add_command(args,entry_map,list_entity):
-    print(args)
+
     list_id = list_entity.id 
     entry_text = " ".join(args)
 
@@ -75,7 +75,18 @@ def add_command(args,entry_map,list_entity):
     return entry_map
 
 def remove_command(args,entry_map,list_entity):
-    pass
+    
+    arg_to_remove = args[0]
+
+    if arg_to_remove in entry_map.keys():
+        dao.delete(dao.getById(arg_to_remove))
+        entry_map = load_list(list_entity)
+        print(Fore.CYAN + "Entry has been deleted." + Fore.RESET)
+
+    else:
+        print(Fore.RED+"There is no entry with id {}".format(arg_to_remove))
+        print(Fore.RESET)
+
 
 def exit_command(args):
     pass
